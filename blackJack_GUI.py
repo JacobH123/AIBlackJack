@@ -5,7 +5,8 @@ from PySide6.QtWidgets import (
 from PySide6.QtGui import QFont, QPixmap
 from PySide6.QtCore import Qt
 from utils import resource_path
-from blackJack_AI import *
+#from blackJack_AI import *
+from loadModel import *
 import numpy as np
 import random
 import os
@@ -264,7 +265,7 @@ class BlackJackGUI(QWidget):
             self.quit_button.show()
 
     def update_display(self):
-        best_move, evs = recommend_best_move_np(self.player_hand, self.dealer_card, self.deck)
+        best_move, evs = recommend_best_move_model(self.player_hand, self.dealer_card)
 
         display_text = (
             f" Your hand: {self.player_hand} (Total: {hand_value_np(self.player_hand)})\n"
